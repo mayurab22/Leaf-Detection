@@ -1,0 +1,92 @@
+<MainScreen>:
+    orientation: 'vertical'
+    spacing: 20
+    padding: 20
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # White background for the whole app
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    # Header Section with Custom Styling
+    BoxLayout:
+        size_hint_y: None
+        height: "60dp"
+        canvas.before:
+            Color:
+                rgba: app.theme_cls.primaryColor
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        MDLabel:
+            text: "PlantsUp"
+            halign: "center"
+            font_style: "Headline"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1  # White
+            bold: True
+
+    # Image Display Section with Shadow Effect
+    Image:
+        id: image_display
+        size_hint: 1, 0.6
+        allow_stretch: True
+        keep_ratio: True
+        source: ''
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 0.1  # Light shadow
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [20]
+
+    # File Selection Button
+    MDButton:
+        style: "elevated"
+        size_hint: 1, None
+        height: "50dp"
+        on_press: root.upload_image()
+        theme_bg_color: "Custom"
+        md_bg_color: app.theme_cls.primaryColor
+        text_color: 1, 1, 0.2, 1  # Yellow text for visibility
+        radius: [20]
+        elevation: 8
+        padding: "10dp", "10dp"
+        MDButtonText:
+            text: "Select Image"
+            font_size: "18sp"
+            bold: True
+            theme_text_color: "Custom"
+            text_color: 1, 1, 0.2, 1
+
+    # Process Image Button
+    MDButton:
+        style: "elevated"
+        size_hint: 1, None
+        height: "50dp"
+        on_press: root.process_image()
+        theme_bg_color: "Custom"
+        md_bg_color: 1, 0.92, 0.23, 1  # Yellow
+        text_color: 0, 0, 0, 1
+        radius: [20]
+        elevation: 8
+        padding: "10dp", "10dp"
+        MDButtonText:
+            text: "Process Image"
+            font_size: "18sp"
+            bold: True
+
+    # Result Display Section
+    MDLabel:
+        id: result_label
+        text: "Result will appear here"
+        size_hint: 1, None
+        height: "40dp"
+        halign: "center"
+        theme_text_color: "Primary"
+        font_style: "Body"
+        bold: True
+        color: 0, 0, 0, 1
